@@ -38,7 +38,7 @@ describe('reporter script', () => {
         attributes: [],
         rerun: undefined,
         rerunOf: undefined,
-        startTime: currentDate,
+        start_time: currentDate,
       };
 
       reporter.runStart(launchObj);
@@ -57,7 +57,7 @@ describe('reporter script', () => {
       reporter.runEnd();
 
       expect(spyFinishLaunch).toHaveBeenCalledTimes(1);
-      expect(spyFinishLaunch).toHaveBeenCalledWith('tempLaunchId', { endTime: currentDate });
+      expect(spyFinishLaunch).toHaveBeenCalledWith('tempLaunchId', { end_time: currentDate });
     });
 
     it('set custom launch status: finishLaunch should be called with parameters', () => {
@@ -69,7 +69,7 @@ describe('reporter script', () => {
 
       expect(spyFinishLaunch).toHaveBeenCalledTimes(1);
       expect(spyFinishLaunch).toHaveBeenCalledWith('tempLaunchId', {
-        endTime: currentDate,
+        end_time: currentDate,
         status: 'warn',
       });
     });
@@ -83,7 +83,7 @@ describe('reporter script', () => {
         id: 'suite1',
         name: 'suite name',
         type: 'suite',
-        startTime: currentDate,
+        start_time: currentDate,
         description: 'suite description',
         attributes: [],
         parentId: undefined,
@@ -103,7 +103,7 @@ describe('reporter script', () => {
         id: 'suite1',
         name: 'suite name',
         type: 'suite',
-        startTime: currentDate,
+        start_time: currentDate,
         description: 'suite description',
         attributes: [],
         parentId: 'parentSuiteId',
@@ -126,13 +126,13 @@ describe('reporter script', () => {
       reporter.testItemIds.set('suiteId', 'tempSuiteId');
       const suiteEndObject = {
         id: 'suiteId',
-        endTime: currentDate,
+        end_time: currentDate,
       };
 
       reporter.suiteEnd(suiteEndObject);
 
       expect(spyFinishTestItem).toHaveBeenCalledTimes(1);
-      expect(spyFinishTestItem).toHaveBeenCalledWith('tempSuiteId', { endTime: currentDate });
+      expect(spyFinishTestItem).toHaveBeenCalledWith('tempSuiteId', { end_time: currentDate });
     });
     it('end suite with testCaseId: finishTestItem should be called with testCaseId', function() {
       const spyFinishTestItem = jest.spyOn(reporter.client, 'finishTestItem');
@@ -141,14 +141,14 @@ describe('reporter script', () => {
       const suiteEndObject = {
         id: 'suiteId',
         title: 'suite title',
-        endTime: currentDate,
+        end_time: currentDate,
       };
 
       reporter.suiteEnd(suiteEndObject);
 
       expect(spyFinishTestItem).toHaveBeenCalledTimes(1);
       expect(spyFinishTestItem).toHaveBeenCalledWith('tempSuiteId', {
-        endTime: currentDate,
+        end_time: currentDate,
         testCaseId: 'testCaseId',
       });
 
@@ -161,14 +161,14 @@ describe('reporter script', () => {
       const suiteEndObject = {
         id: 'suiteId',
         title: 'suite title',
-        endTime: currentDate,
+        end_time: currentDate,
       };
 
       reporter.suiteEnd(suiteEndObject);
 
       expect(spyFinishTestItem).toHaveBeenCalledTimes(1);
       expect(spyFinishTestItem).toHaveBeenCalledWith('tempSuiteId', {
-        endTime: currentDate,
+        end_time: currentDate,
         status: 'failed',
       });
 
@@ -187,7 +187,7 @@ describe('reporter script', () => {
       };
       const expectedTestStartObject = {
         name: 'test name',
-        startTime: currentDate,
+        start_time: currentDate,
         attributes: [],
         type: 'step',
       };
@@ -232,7 +232,7 @@ describe('reporter script', () => {
       };
       reporter.testItemIds.set('testId', 'tempTestItemId');
       const expectedTestFinishObj = {
-        endTime: currentDate,
+        end_time: currentDate,
         status: 'passed',
         attributes: [],
         description: '',
@@ -255,7 +255,7 @@ describe('reporter script', () => {
       };
       reporter.testItemIds.set('testId', 'tempTestItemId');
       const expectedTestFinishObj = {
-        endTime: currentDate,
+        end_time: currentDate,
         status: 'failed',
         attributes: [],
         description: '',
@@ -318,7 +318,7 @@ describe('reporter script', () => {
         },
       ]);
       const expectedTestFinishObj = {
-        endTime: currentDate,
+        end_time: currentDate,
         status: 'passed',
         description: '',
         attributes: [
@@ -350,7 +350,7 @@ describe('reporter script', () => {
       reporter.testItemIds.set('testId', 'tempTestItemId');
       reporter.setDescription('test description');
       const expectedTestFinishObj = {
-        endTime: currentDate,
+        end_time: currentDate,
         status: 'passed',
         description: 'test description',
         attributes: [],
@@ -374,7 +374,7 @@ describe('reporter script', () => {
       reporter.testItemIds.set('testId', 'tempTestItemId');
       reporter.setTestCaseId({ testCaseId: 'testCaseId' });
       const expectedTestFinishObj = {
-        endTime: currentDate,
+        end_time: currentDate,
         status: 'passed',
         description: '',
         attributes: [],
@@ -399,7 +399,7 @@ describe('reporter script', () => {
       reporter.testItemIds.set('testId', 'tempTestItemId');
       reporter.setTestItemStatus({ status: 'failed' });
       const expectedTestFinishObj = {
-        endTime: currentDate,
+        end_time: currentDate,
         status: 'failed',
         description: '',
         attributes: [],
@@ -495,7 +495,7 @@ describe('reporter script', () => {
       };
       const expectedHookStartObject = {
         name: 'hook name',
-        startTime: currentDate,
+        start_time: currentDate,
         type: 'BEFORE_METHOD',
       };
 
@@ -514,11 +514,11 @@ describe('reporter script', () => {
       };
       reporter.suitesStackTempInfo.push({
         tempId: 'suiteTempId',
-        startTime: currentDate,
+        start_time: currentDate,
       });
       const expectedHookStartObject = {
         name: 'hook name',
-        startTime: currentDate - 1,
+        start_time: currentDate - 1,
         type: 'BEFORE_SUITE',
       };
 
@@ -557,12 +557,12 @@ describe('reporter script', () => {
       };
       const hookStartObject = {
         name: 'hook name',
-        startTime: currentDate,
+        start_time: currentDate,
         type: 'BEFORE_METHOD',
       };
       const expectedHookFinishObj = {
         status: 'passed',
-        endTime: currentDate,
+        end_time: currentDate,
       };
       reporter.hooks.set('hookId_testId', hookStartObject);
 
@@ -584,12 +584,12 @@ describe('reporter script', () => {
       };
       const hookStartObject = {
         name: 'hook name',
-        startTime: currentDate,
+        start_time: currentDate,
         type: 'BEFORE_METHOD',
       };
       const expectedHookFinishObj = {
         status: 'failed',
-        endTime: currentDate,
+        end_time: currentDate,
       };
       reporter.hooks.set(hookInfoObject.id, hookStartObject);
 
@@ -759,13 +759,13 @@ describe('reporter script', () => {
 
     it('getCurrentSuiteInfo, suite exists: should return tempId of current suite', () => {
       reporter.suitesStackTempInfo = [
-        { tempId: 'firstSuiteTempId', startTime: currentDate },
-        { tempId: 'suiteTempId', startTime: currentDate },
+        { tempId: 'firstSuiteTempId', start_time: currentDate },
+        { tempId: 'suiteTempId', start_time: currentDate },
       ];
 
       const currentSuiteTempId = reporter.getCurrentSuiteInfo();
 
-      expect(currentSuiteTempId).toEqual({ tempId: 'suiteTempId', startTime: currentDate });
+      expect(currentSuiteTempId).toEqual({ tempId: 'suiteTempId', start_time: currentDate });
     });
 
     it('getCurrentSuiteInfo, suite not exist: should return undefined', () => {

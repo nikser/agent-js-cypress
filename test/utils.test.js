@@ -198,7 +198,7 @@ describe('utils script', () => {
               value: `${pjson.name}|${pjson.version}`,
             },
           ],
-          startTime: currentDate,
+          start_time: currentDate,
           rerun: undefined,
           rerunOf: undefined,
         };
@@ -223,7 +223,7 @@ describe('utils script', () => {
           id: 'suite1',
           name: 'suite name',
           type: 'suite',
-          startTime: currentDate,
+          start_time: currentDate,
           description: 'suite description',
           attributes: [],
           codeRef: 'test/example.spec.js/suite name',
@@ -250,7 +250,7 @@ describe('utils script', () => {
           id: 'suite1',
           name: 'suite name',
           type: 'suite',
-          startTime: currentDate,
+          start_time: currentDate,
           description: 'suite description',
           attributes: [],
           codeRef: 'test/example.spec.js/parent suite name/suite name',
@@ -277,7 +277,7 @@ describe('utils script', () => {
         const expectedSuiteEndObject = {
           id: 'suite1',
           title: 'suite name',
-          endTime: currentDate,
+          end_time: currentDate,
         };
 
         const suiteEndObject = getSuiteEndObject(suite);
@@ -381,7 +381,7 @@ describe('utils script', () => {
         };
         const expectedTestStartObject = {
           name: 'test name',
-          startTime: currentDate,
+          start_time: currentDate,
           attributes: [],
           type: 'step',
           codeRef: 'test/example.spec.js/suite name/test name',
@@ -405,7 +405,7 @@ describe('utils script', () => {
           },
         };
         const expectedTestEndObject = {
-          endTime: currentDate,
+          end_time: currentDate,
           status: testInfo.status,
         };
         const testEndObject = getTestEndObject(testInfo);
@@ -424,7 +424,7 @@ describe('utils script', () => {
           },
         };
         const expectedTestEndObject = {
-          endTime: currentDate,
+          end_time: currentDate,
           status: testInfo.status,
         };
         const testEndObject = getTestEndObject(testInfo, true);
@@ -443,7 +443,7 @@ describe('utils script', () => {
           },
         };
         const expectedTestEndObject = {
-          endTime: currentDate,
+          end_time: currentDate,
           status: testInfo.status,
           issue: {
             issueType: 'NOT_ISSUE',
@@ -466,7 +466,7 @@ describe('utils script', () => {
           testCaseId: 'testCaseId',
         };
         const expectedTestEndObject = {
-          endTime: currentDate,
+          end_time: currentDate,
           status: testInfo.status,
           testCaseId: 'testCaseId',
         };
@@ -582,7 +582,7 @@ describe('utils script', () => {
         };
         const expectedHookStartObject = {
           name: 'hook name',
-          startTime: currentDate,
+          start_time: currentDate,
           type: 'BEFORE_METHOD',
         };
 
